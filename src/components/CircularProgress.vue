@@ -21,11 +21,11 @@
     />
     <g v-if="!props.status" :transform="`translate(${center}, ${center})`">
       <text
-        class="text"
         text-anchor="middle"
         dominant-baseline="middle"
-        :font-size="size * 0.25"
-        fill="#111"
+        :font-size="usedFontSize"
+        :font-weight="500"
+        fill="#111111;"
       >
         {{ Math.round(progressRatio * 100) }}%
       </text>
@@ -35,8 +35,8 @@
         v-if="resolvedStatus === 'success'"
         :x="center - iconOffset"
         :y="center - iconOffset"
-        :width="iconSize"
-        :height="iconSize"
+        :width="usedIconSize"
+        :height="usedIconSize"
         viewBox="0 0 64 64"
       >
         <path
@@ -50,8 +50,8 @@
         v-else-if="resolvedStatus === 'warning'"
         :x="center - iconOffset"
         :y="center - iconOffset"
-        :width="iconSize"
-        :height="iconSize"
+        :width="usedIconSize"
+        :height="usedIconSize"
         viewBox="0 0 64 64"
       >
         <circle cx="32" cy="32" r="30" fill="#f59e0b" />
@@ -63,8 +63,8 @@
         v-else-if="resolvedStatus === 'error'"
         :x="center - iconOffset"
         :y="center - iconOffset"
-        :width="iconSize"
-        :height="iconSize"
+        :width="usedIconSize"
+        :height="usedIconSize"
         viewBox="0 0 64 64"
       >
         <line x1="16" y1="16" x2="48" y2="48" stroke="#ef4444" stroke-width="4" />
@@ -85,6 +85,8 @@ const props = defineProps<{
   strokeWidth: number
   status?: Status
   type?: Type
+  iconSize?: number
+  fontSize?: number
 }>()
 
 const progress = computed(() => {
@@ -148,8 +150,9 @@ const rotation = computed(() => {
   return `rotate(-90 ${center.value} ${center.value})`
 })
 
-const iconSize = computed(() => props.size * 0.15)
-const iconOffset = computed(() => iconSize.value / 2)
+const usedIconSize = computed(() => props.iconSize ?? props.size * 0.15)
+const usedFontSize = computed(() => props.fontSize || props.size * 0.15)
+const iconOffset = computed(() => usedIconSize.value / 2)
 </script>
 
 <style scoped>
