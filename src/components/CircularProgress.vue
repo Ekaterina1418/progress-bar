@@ -31,43 +31,32 @@
     </g>
     <g v-else>
       <svg
-        v-if="resolvedStatus === 'success'"
+        v-for="s in ['success', 'warning', 'error']"
+        :key="s"
+        v-show="resolvedStatus === s"
         :x="center - iconOffset"
         :y="center - iconOffset"
         :width="usedIconSize"
         :height="usedIconSize"
         viewBox="0 0 64 64"
+        class="icon"
       >
-        <path
-          d="M56.103,16.824l-33.296,33.297l-14.781,-14.78l2.767,-2.767l11.952,11.952l30.53,-30.53c0.943,0.943 1.886,1.886 2.828,2.828Z"
-          fill="#22c55e"
-          fill-rule="nonzero"
-        />
-      </svg>
-
-      <svg
-        v-else-if="resolvedStatus === 'warning'"
-        :x="center - iconOffset"
-        :y="center - iconOffset"
-        :width="usedIconSize"
-        :height="usedIconSize"
-        viewBox="0 0 64 64"
-      >
-        <circle cx="32" cy="32" r="30" fill="#f59e0b" />
-        <line x1="32" y1="16" x2="32" y2="40" stroke="#fff" stroke-width="4" />
-        <circle cx="32" cy="48" r="2" fill="#fff" />
-      </svg>
-
-      <svg
-        v-else-if="resolvedStatus === 'error'"
-        :x="center - iconOffset"
-        :y="center - iconOffset"
-        :width="usedIconSize"
-        :height="usedIconSize"
-        viewBox="0 0 64 64"
-      >
-        <line x1="16" y1="16" x2="48" y2="48" stroke="#ef4444" stroke-width="4" />
-        <line x1="48" y1="16" x2="16" y2="48" stroke="#ef4444" stroke-width="4" />
+        <template v-if="s === 'success'">
+          <path
+            d="M56.103,16.824l-33.296,33.297l-14.781,-14.78l2.767,-2.767l11.952,11.952l30.53,-30.53c0.943,0.943 1.886,1.886 2.828,2.828Z"
+            fill="#22c55e"
+            fill-rule="nonzero"
+          />
+        </template>
+        <template v-else-if="s === 'warning'">
+          <circle cx="32" cy="32" r="30" fill="#f59e0b" />
+          <line x1="32" y1="16" x2="32" y2="40" stroke="#fff" stroke-width="4" />
+          <circle cx="32" cy="48" r="2" fill="#fff" />
+        </template>
+        <template v-else-if="s === 'error'">
+          <line x1="16" y1="16" x2="48" y2="48" stroke="#ef4444" stroke-width="4" />
+          <line x1="48" y1="16" x2="16" y2="48" stroke="#ef4444" stroke-width="4" />
+        </template>
       </svg>
     </g>
   </svg>
@@ -159,5 +148,22 @@ circle {
   transition:
     stroke-dashoffset 0.6s ease,
     stroke 0.4s ease;
+}
+.icon {
+  transition:
+    opacity 0.3s ease,
+    transform 0.3s ease;
+}
+.icon[v-cloak] {
+  opacity: 0;
+  transform: scale(0.5);
+}
+svg g .icon[v-show='false'] {
+  opacity: 0;
+  transform: scale(0.5);
+}
+svg g .icon[v-show='true'] {
+  opacity: 1;
+  transform: scale(1);
 }
 </style>
