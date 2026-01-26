@@ -15,7 +15,7 @@
       fill="none"
       :stroke="strokeColor"
       :stroke-width="strokeWidth"
-      :stroke-dasharray="circumference"
+      :stroke-dasharray="visibleCircumference"
       :stroke-dashoffset="dashOffset"
     />
   </svg>
@@ -50,9 +50,11 @@ const circumference = computed(() => {
 const progressRatio = computed(() => {
   return progress.value / props.max
 })
-const dashOffset = computed(() => {
-  return circumference.value * (1 - progressRatio.value)
-})
+const visibleRatio = computed(() => (props.type === 'dashboard' ? 0.75 : 1))
+
+const visibleCircumference = computed(() => circumference.value * visibleRatio.value)
+
+const dashOffset = computed(() => visibleCircumference.value * (1 - progressRatio.value))
 
 const resolvedStatus = computed<Status>(() => {
   if (props.status) return props.status
