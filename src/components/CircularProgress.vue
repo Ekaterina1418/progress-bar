@@ -13,7 +13,7 @@
       :cy="center"
       :r="radius"
       fill="none"
-      :stroke="color"
+      :stroke="strokeColor"
       :stroke-width="strokeWidth"
       :stroke-dasharray="circumference"
       :stroke-dashoffset="dashOffset"
@@ -70,6 +70,22 @@ const progressColor = computed(() => {
   const green = Math.round(255 * ratio)
 
   return `rgb(${red}, ${green}, 0}`
+})
+
+const strokeColor = computed(() => {
+  if (resolvedStatus.value === 'inprogress') {
+    return progressColor.value
+  }
+  switch (resolvedStatus.value) {
+    case 'success':
+      return '#22c55e'
+    case 'warning':
+      return '#f59e0b'
+    case 'error':
+      return '#ef4444'
+    default:
+      return '#e5e7eb'
+  }
 })
 </script>
 
