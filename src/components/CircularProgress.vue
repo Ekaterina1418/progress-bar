@@ -99,4 +99,10 @@ const rotation = computed(() => {
 })
 </script>
 
-<style scoped></style>
+<style scoped>
+circle {
+  transition:
+    stroke-dashoffset 0.6s ease,
+    stroke 0.4s ease;
+}
+</style>
