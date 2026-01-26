@@ -22,6 +22,7 @@
 </template>
 
 <script setup lang="ts">
+import type { Status, Type } from '@/types'
 import { computed } from 'vue'
 
 const props = defineProps<{
@@ -30,8 +31,8 @@ const props = defineProps<{
   size: number
   strokeWidth: number
   color: string
-  status?: 'inprogress' | 'success' | 'warning' | 'error'
-  type: 'circle' | 'dashboard'
+  status?: Status
+  type?: Type
 }>()
 
 const progress = computed(() => {
@@ -51,6 +52,24 @@ const progressRatio = computed(() => {
 })
 const dashOffset = computed(() => {
   return circumference.value * (1 - progressRatio.value)
+})
+
+const resolvedStatus = computed<Status>(() => {
+  if (props.status) return props.status
+
+  if (progressRatio.value === 1) return 'success'
+  if (progressRatio.value > 0.7) return 'inprogress'
+  if (progressRatio.value > 0.3) return 'warning'
+  return 'error'
+})
+
+const progressColor = computed(() => {
+  const ratio = progressRatio.value
+
+  const red = Math.round(255 * (1 - ratio))
+  const green = Math.round(255 * ratio)
+
+  return `rgb(${red}, ${green}, 0}`
 })
 </script>
 
