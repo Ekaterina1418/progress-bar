@@ -9,7 +9,7 @@ import CircularProgress from './components/CircularProgress.vue'
     :size="120"
     :strokeWidth="10"
     color="#3498db"
-    type="circle"
+    type="dashboard"
   />
 </template>
 

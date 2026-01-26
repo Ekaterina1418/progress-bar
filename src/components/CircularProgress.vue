@@ -1,5 +1,10 @@
 <template>
-  <svg :width="size" :height="size" :view-box="`0 0 ${size} ${size}`">
+  <svg
+    :width="size"
+    :height="size"
+    :view-box="`0 0 ${size} ${size}`"
+    :style="{ transform: rotation }"
+  >
     <circle
       :cx="center"
       :cy="center"
@@ -88,6 +93,9 @@ const strokeColor = computed(() => {
     default:
       return '#e5e7eb'
   }
+})
+const rotation = computed(() => {
+  return props.type === 'dashboard' ? 'rotate(-225deg)' : 'rotate(-90deg)'
 })
 </script>
 
