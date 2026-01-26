@@ -1,10 +1,5 @@
 <template>
-  <svg
-    :width="size"
-    :height="size"
-    :view-box="`0 0 ${size} ${size}`"
-    :style="{ transform: rotation }"
-  >
+  <svg :width="size" :height="size" :view-box="`0 0 ${size} ${size}`">
     <circle
       :cx="center"
       :cy="center"
@@ -22,7 +17,13 @@
       :stroke-width="strokeWidth"
       :stroke-dasharray="visibleCircumference"
       :stroke-dashoffset="dashOffset"
+      :transform="rotation"
     />
+    <g v-if="!props.status" :transform="`translate(${center}, ${center})`">
+      <text text-anchor="middle" dominant-baseline="middle" :font-size="size * 0.25" fill="#111">
+        {{ Math.round(progressRatio * 100) }}%
+      </text>
+    </g>
   </svg>
 </template>
 
