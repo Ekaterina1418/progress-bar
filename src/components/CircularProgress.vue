@@ -27,10 +27,10 @@
     <g v-else>
       <svg
         v-if="resolvedStatus === 'success'"
-        :x="center - 16"
-        :y="center - 16"
-        width="32"
-        height="32"
+        :x="center - iconOffset"
+        :y="center - iconOffset"
+        :width="iconSize"
+        :height="iconSize"
         viewBox="0 0 64 64"
       >
         <path
@@ -42,10 +42,10 @@
 
       <svg
         v-else-if="resolvedStatus === 'warning'"
-        :x="center - 16"
-        :y="center - 16"
-        width="32"
-        height="32"
+        :x="center - iconOffset"
+        :y="center - iconOffset"
+        :width="iconSize"
+        :height="iconSize"
         viewBox="0 0 64 64"
       >
         <circle cx="32" cy="32" r="30" fill="#f59e0b" />
@@ -55,10 +55,10 @@
 
       <svg
         v-else-if="resolvedStatus === 'error'"
-        :x="center - 16"
-        :y="center - 16"
-        width="32"
-        height="32"
+        :x="center - iconOffset"
+        :y="center - iconOffset"
+        :width="iconSize"
+        :height="iconSize"
         viewBox="0 0 64 64"
       >
         <line x1="16" y1="16" x2="48" y2="48" stroke="#ef4444" stroke-width="4" />
@@ -141,6 +141,9 @@ const rotation = computed(() => {
   }
   return `rotate(-90 ${center.value} ${center.value})`
 })
+
+const iconSize = computed(() => props.size * 0.15)
+const iconOffset = computed(() => iconSize.value / 2)
 </script>
 
 <style scoped>
