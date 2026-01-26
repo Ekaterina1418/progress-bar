@@ -20,7 +20,13 @@
       :transform="rotation"
     />
     <g v-if="!props.status" :transform="`translate(${center}, ${center})`">
-      <text text-anchor="middle" dominant-baseline="middle" :font-size="size * 0.25" fill="#111">
+      <text
+        class="text"
+        text-anchor="middle"
+        dominant-baseline="middle"
+        :font-size="size * 0.25"
+        fill="#111"
+      >
         {{ Math.round(progressRatio * 100) }}%
       </text>
     </g>
