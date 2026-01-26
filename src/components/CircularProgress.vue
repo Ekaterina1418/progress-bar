@@ -13,6 +13,7 @@
       :cy="center"
       :r="radius"
       fill="none"
+      :stroke="color"
       :stroke-width="strokeWidth"
       :stroke-dasharray="circumference"
       :stroke-dashoffset="dashOffset"
@@ -29,8 +30,8 @@ const props = defineProps<{
   size: number
   strokeWidth: number
   color: string
-  status: string
-  type: string
+  status?: 'inprogress' | 'success' | 'warning' | 'error'
+  type: 'circle' | 'dashboard'
 }>()
 
 const progress = computed(() => {
