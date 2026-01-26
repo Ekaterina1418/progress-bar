@@ -1,5 +1,5 @@
 <template>
-  <svg :width="size" :height="size" :view-box="`0 0 ${size} ${size}`">
+  <svg :width="size" :height="size" :viewBox="`0 0 ${size} ${size}`">
     <circle
       :cx="center"
       :cy="center"
@@ -25,7 +25,6 @@
         dominant-baseline="middle"
         :font-size="usedFontSize"
         :font-weight="500"
-        fill="#111111;"
       >
         {{ Math.round(progressRatio * 100) }}%
       </text>
