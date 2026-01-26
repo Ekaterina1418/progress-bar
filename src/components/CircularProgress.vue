@@ -35,7 +35,6 @@ const props = defineProps<{
   max: number
   size: number
   strokeWidth: number
-  color: string
   status?: Status
   type?: Type
 }>()

@@ -3,14 +3,7 @@ import CircularProgress from './components/CircularProgress.vue'
 </script>
 
 <template>
-  <CircularProgress
-    :value="70"
-    :max="150"
-    :size="120"
-    :strokeWidth="10"
-    color="#3498db"
-    type="dashboard"
-  />
+  <CircularProgress :value="45" :max="150" :size="120" :strokeWidth="10" type="circle" />
 </template>
 
 <style scoped></style>
