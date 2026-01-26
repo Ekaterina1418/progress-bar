@@ -95,7 +95,10 @@ const strokeColor = computed(() => {
   }
 })
 const rotation = computed(() => {
-  return props.type === 'dashboard' ? 'rotate(-225deg)' : 'rotate(-90deg)'
+  if (props.type === 'dashboard') {
+    return `rotate(-225 ${center.value} ${center.value})`
+  }
+  return `rotate(-90 ${center.value} ${center.value})`
 })
 </script>
 
