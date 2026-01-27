@@ -4,7 +4,7 @@ import CircularProgress from './components/CircularProgress.vue'
 
 <template>
   <CircularProgress
-    :value="14"
+    :value="28"
     :max="100"
     :size="160"
     :strokeWidth="8"

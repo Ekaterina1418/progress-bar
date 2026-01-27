@@ -40,6 +40,7 @@
         :height="usedIconSize"
         viewBox="0 0 64 64"
         class="icon"
+        :class="{ 'icon-visible': resolvedStatus === s, 'icon-hidden': resolvedStatus !== s }"
       >
         <template v-if="s === 'success'">
           <path
@@ -113,7 +114,7 @@ const progressColor = computed(() => {
   const red = Math.round(255 * (1 - ratio))
   const green = Math.round(255 * ratio)
 
-  return `rgb(${red}, ${green}, 0}`
+  return `rgb(${red}, ${green}, 0)`
 })
 
 const strokeColor = computed(() => {
@@ -158,12 +159,17 @@ circle {
   opacity: 0;
   transform: scale(0.5);
 }
-svg g .icon[v-show='false'] {
+.icon-hidden {
   opacity: 0;
   transform: scale(0.5);
+  pointer-events: none;
 }
-svg g .icon[v-show='true'] {
+.icon-visible {
   opacity: 1;
   transform: scale(1);
+}
+text {
+  fill: #9e9fa1;
+  transition: fill 0.4s ease;
 }
 </style>
