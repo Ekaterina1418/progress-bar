@@ -1,16 +1,11 @@
 <script setup lang="ts">
-import CircularProgress from './components/CircularProgress.vue'
+import CircularProgressDemo from './pages/CircularProgressDemo.vue'
 </script>
 
 <template>
-  <CircularProgress
-    :value="28"
-    :max="100"
-    :size="160"
-    :strokeWidth="8"
-    :icon-size="28"
-    type="dashboard"
-  />
+  <section>
+    <CircularProgressDemo />
+  </section>
 </template>
 
 <style scoped></style>
