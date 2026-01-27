@@ -1,9 +1,29 @@
-<script setup lang="ts">
-import CircularProgressDemo from './pages/CircularProgressDemo.vue'
-</script>
-
 <template>
-  <CircularProgressDemo />
+  <div class="page">
+    <nav class="nav">
+      <RouterLink to="/">Progress demo</RouterLink>
+      <RouterLink to="/diagram">Form demo</RouterLink>
+    </nav>
+    <RouterView />
+  </div>
 </template>
+<script setup lang="ts">
+import { RouterLink, RouterView } from 'vue-router'
+</script>
+<style scoped>
+.nav {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 24px;
+}
 
-<style scoped></style>
+.nav a {
+  text-decoration: none;
+  color: #555;
+  font-weight: 500;
+}
+
+.nav a.router-link-active {
+  color: #000;
+}
+</style>
