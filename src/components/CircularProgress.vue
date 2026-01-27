@@ -101,7 +101,7 @@ const dashOffset = computed(() => visibleCircumference.value * (1 - progressRati
 const resolvedStatus = computed<Status>(() => {
   if (props.status) return props.status
 
-  if (progressRatio.value === 1) return 'success'
+  if (progressRatio.value >= 1) return 'success'
   if (progressRatio.value > 0.7) return 'inprogress'
   if (progressRatio.value > 0.3) return 'warning'
   return 'error'
