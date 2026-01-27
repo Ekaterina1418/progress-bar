@@ -31,10 +31,35 @@ const color = defineModel<string | number>('color')
 }
 
 .input-color {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  overflow: hidden;
+}
+.input-color::-webkit-color-swatch-wrapper {
+  padding: 0;
+}
+.input-color::-webkit-color-swatch {
+  border: none;
+  border-radius: 50%;
+}
+
+.input-color::-moz-color-swatch {
+  border: none;
+  border-radius: 50%;
+  height: 20px;
+  width: 20px;
+}
+
+.input-color::-moz-focus-inner {
   border: none;
   padding: 0;
-  margin-left: 12px;
-  cursor: pointer;
 }
 .input-text,
 .input-value {
