@@ -4,7 +4,14 @@
       <input class="custom-input input-text" v-model="name" type="text" />
     </div>
     <div class="input-wrapper">
-      <input class="custom-input input-value" v-model="value" type="text" />
+      <input
+        class="custom-input input-value"
+        v-model.number="value"
+        type="number"
+        min="0"
+        max="100"
+        @input="value = Math.min(Math.max(value ?? 0, 0), 100)"
+      />
     </div>
     <input class="custom-input input-color" v-model="color" type="color" />
     <div class="actions">
@@ -16,7 +23,7 @@
 
 <script setup lang="ts">
 const name = defineModel<string | number>('name')
-const value = defineModel<string | number>('value')
+const value = defineModel<number>('value')
 const color = defineModel<string | number>('color')
 </script>
 
@@ -24,9 +31,11 @@ const color = defineModel<string | number>('color')
 .sector-row {
   display: flex;
   align-items: center;
-  padding: 10px 16px;
-  background: #dbdfe933;
+  width: 541px;
+  height: 60px;
+  padding: 18px 20px;
   border-radius: 10px;
+  background: #dbdfe933;
   margin-bottom: 8px;
 }
 
@@ -61,18 +70,12 @@ const color = defineModel<string | number>('color')
   border: none;
   padding: 0;
 }
-.input-text,
-.input-value {
-  padding: 8px;
-  border: none;
-  background: transparent;
-  text-align: left;
-}
 .input-wrapper {
   position: relative;
-  flex: 2;
 }
-
+.input-wrapper:not(:last-child) {
+  margin-right: 25px;
+}
 .input-wrapper::after {
   content: '';
   position: absolute;
@@ -83,6 +86,31 @@ const color = defineModel<string | number>('color')
   background: #dbdfe9;
   transform: translateY(-50%);
 }
+.input-text {
+  width: 120px;
+  border: none;
+  background: transparent;
+  margin-right: 25px;
+}
+
+.input-value {
+  width: 40px;
+  text-align: right;
+  border: none;
+  background: transparent;
+  padding: 0 5px;
+  margin-right: 25px;
+}
+input[type='number']::-webkit-inner-spin-button,
+input[type='number']::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type='number'] {
+  -moz-appearance: textfield;
+}
+
 .actions {
   display: flex;
   gap: 8px;

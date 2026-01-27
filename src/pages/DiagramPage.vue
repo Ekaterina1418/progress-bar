@@ -8,7 +8,7 @@ import { reactive } from 'vue'
 
 const model = reactive({
   name: '',
-  value: '',
+  value: 0,
   color: '',
 })
 </script>
