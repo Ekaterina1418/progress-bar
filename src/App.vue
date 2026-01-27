@@ -3,9 +3,7 @@ import CircularProgressDemo from './pages/CircularProgressDemo.vue'
 </script>
 
 <template>
-  <section>
-    <CircularProgressDemo />
-  </section>
+  <CircularProgressDemo />
 </template>
 
 <style scoped></style>
