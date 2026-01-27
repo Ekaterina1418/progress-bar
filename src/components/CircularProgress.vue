@@ -31,16 +31,16 @@
     </g>
     <g v-else>
       <svg
+        v-show="props.status === s"
         v-for="s in ['success', 'warning', 'error']"
         :key="s"
-        v-show="resolvedStatus === s"
         :x="center - iconOffset"
         :y="center - iconOffset"
         :width="usedIconSize"
         :height="usedIconSize"
         viewBox="0 0 64 64"
         class="icon"
-        :class="{ 'icon-visible': resolvedStatus === s, 'icon-hidden': resolvedStatus !== s }"
+        :class="{ 'icon-visible': props.status === s, 'icon-hidden': props.status !== s }"
       >
         <template v-if="s === 'success'">
           <path
@@ -99,38 +99,26 @@ const visibleCircumference = computed(() => circumference.value * visibleRatio.v
 
 const dashOffset = computed(() => visibleCircumference.value * (1 - progressRatio.value))
 
-const resolvedStatus = computed<Status>(() => {
-  if (props.status) return props.status
-
-  if (progressRatio.value >= 1) return 'success'
-  if (progressRatio.value > 0.7) return 'inprogress'
-  if (progressRatio.value > 0.3) return 'warning'
-  return 'error'
-})
-
-const progressColor = computed(() => {
-  const ratio = progressRatio.value
-
-  const red = Math.round(255 * (1 - ratio))
-  const green = Math.round(255 * ratio)
-
-  return `rgb(${red}, ${green}, 0)`
-})
-
 const strokeColor = computed(() => {
-  if (resolvedStatus.value === 'inprogress') {
-    return progressColor.value
+  if (props.status) {
+    switch (props.status) {
+      case 'success':
+        return '#22c55e'
+      case 'warning':
+        return '#f59e0b'
+      case 'error':
+        return '#ef4444'
+      default:
+        return '#e5e7eb'
+    }
   }
-  switch (resolvedStatus.value) {
-    case 'success':
-      return '#22c55e'
-    case 'warning':
-      return '#f59e0b'
-    case 'error':
-      return '#ef4444'
-    default:
-      return '#e5e7eb'
-  }
+  const ratio = progressRatio.value
+  const percent = ratio * 100
+
+  if (percent <= 25) return '#ef4444'
+  if (percent <= 50) return '#3b82f6'
+  if (percent <= 75) return '#f59e0b'
+  return '#22c55e'
 })
 const rotation = computed(() => {
   if (props.type === 'dashboard') {

@@ -2,7 +2,7 @@
   <div class="page">
     <div class="demo-grid">
       <CircularProgress :value="0" :max="100" :size="100" :stroke-width="10" type="circle" />
-      <CircularProgress :value="25" :max="100" :size="100" :stroke-width="10" type="circle" />
+      <CircularProgress :value="45" :max="100" :size="100" :stroke-width="10" type="circle" />
       <CircularProgress
         :value="100"
         :max="100"
