@@ -8,7 +8,6 @@ import CircularProgress from './components/CircularProgress.vue'
     :max="100"
     :size="160"
     :strokeWidth="8"
-    status="error"
     :icon-size="28"
     type="dashboard"
   />
