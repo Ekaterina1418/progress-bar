@@ -2,7 +2,7 @@
   <div class="page">
     <nav class="nav">
       <RouterLink to="/">Progress demo</RouterLink>
-      <RouterLink to="/diagram">Form demo</RouterLink>
+      <RouterLink to="/diagram">Diagram demo</RouterLink>
     </nav>
     <RouterView />
   </div>
@@ -24,6 +24,6 @@ import { RouterLink, RouterView } from 'vue-router'
 }
 
 .nav a.router-link-active {
-  color: #000;
+  color: #265ee2;
 }
 </style>
