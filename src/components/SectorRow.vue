@@ -14,7 +14,7 @@
         :readonly="!isEditing"
       />
     </div>
-    <input class="custom-input input-color" v-model="color" type="color" :readonly="!isEditing" />
+    <ColorPicker v-model="color" />
     <div class="actions">
       <button @click="toggleEdit" class="edit">
         <img src="../assets/icons/pen.svg" alt="pen" />
@@ -28,7 +28,7 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
-
+import ColorPicker from 'primevue/colorpicker'
 const emit = defineEmits(['delete', 'edit'])
 const name = defineModel<string | number>('name')
 const value = defineModel<number>('value')
