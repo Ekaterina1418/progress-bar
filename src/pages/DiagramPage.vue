@@ -1,21 +1,25 @@
 <template>
-  <section>
-    <h1 class="title">Круговая диаграмма</h1>
-  </section>
-  <div class="wrap-form">
-    <SectorRow
-      v-for="sector in sectors"
-      :key="sector.id"
-      v-model:name="sector.name"
-      v-model:value="sector.value"
-      v-model:color="sector.color"
-      @delete="removeSector(sector.id)"
-    />
-    <button class="add-sector" @click="addSector">Добавить сектор</button>
+  <div class="page">
+    <section>
+      <h1 class="title">Круговая диаграмма</h1>
+      <div class="wrap-form">
+        <SectorRow
+          v-for="sector in sectors"
+          :key="sector.id"
+          v-model:name="sector.name"
+          v-model:value="sector.value"
+          v-model:color="sector.color"
+          @delete="removeSector(sector.id)"
+        />
+        <button class="add-sector" @click="addSector">Добавить сектор</button>
+      </div>
+      <PieChart :sectors="sectors" />
+    </section>
   </div>
 </template>
 
 <script setup lang="ts">
+import PieChart from '@/components/PieChart.vue'
 import SectorRow from '@/components/SectorRow.vue'
 import type { Sector } from '@/types'
 import { reactive, ref } from 'vue'

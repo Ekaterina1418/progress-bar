@@ -7,7 +7,7 @@
 <script setup lang="ts">
 import type { Sector } from '@/types'
 import { Chart, PieController, ArcElement, Tooltip, Legend } from 'chart.js'
-import { ref, watch } from 'vue'
+import { onBeforeMount, onMounted, ref, watch } from 'vue'
 Chart.register(PieController, ArcElement, Tooltip, Legend)
 
 const props = defineProps<{
@@ -56,6 +56,10 @@ watch(
   },
   { deep: true },
 )
+onMounted(initChart)
+onBeforeMount(() => {
+  chart.value?.destroy()
+})
 </script>
 
 <style scoped></style>
