@@ -29,7 +29,7 @@ const createChart = () => {
       datasets: [
         {
           data: props.sectors.map((s) => s.value),
-          backgroundColor: props.sectors.map((s) => s.color),
+          backgroundColor: props.sectors.map((s) => s.color as string),
         },
       ],
     },

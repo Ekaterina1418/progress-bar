@@ -1,7 +1,7 @@
 <template>
   <div class="page">
     <section class="progress-bar">
-      <h2 class="title">Кругового прогресс бар</h2>
+      <h2 class="title">Круговой прогресс бар</h2>
       <div class="demo-grid">
         <CircularProgress :value="0" :max="100" :size="120" :stroke-width="10" type="circle" />
         <CircularProgress :value="45" :max="100" :size="120" :stroke-width="10" type="circle" />

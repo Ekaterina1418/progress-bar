@@ -14,7 +14,7 @@
         :readonly="!isEditing"
       />
     </div>
-    <ColorPicker v-model="color" />
+    <ColorPicker v-model="color" inputId="cp-hex" format="hex" class="picker" />
     <div class="actions">
       <button @click="toggleEdit" class="edit">
         <img src="../assets/icons/pen.svg" alt="pen" />
@@ -27,18 +27,21 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, watch } from 'vue'
 import ColorPicker from 'primevue/colorpicker'
 const emit = defineEmits(['delete', 'edit'])
 const name = defineModel<string | number>('name')
 const value = defineModel<number>('value')
-const color = defineModel<string | number>('color')
+const color = defineModel<string>('color')
 
 const isEditing = ref(false)
 
 const toggleEdit = () => {
   isEditing.value = !isEditing.value
 }
+watch(color, (val) => {
+  if (val && !val.startsWith('#')) color.value = '#' + val
+})
 </script>
 
 <style scoped>
@@ -139,5 +142,10 @@ input[type='number'] {
   background: transparent;
   cursor: pointer;
   font-size: 16px;
+}
+.picker {
+  --p-colorpicker-preview-width: 20px;
+  --p-colorpicker-preview-height: 20px;
+  --p-colorpicker-preview-border-radius: 50%;
 }
 </style>
