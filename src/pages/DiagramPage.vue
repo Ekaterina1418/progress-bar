@@ -1,8 +1,8 @@
 <template>
-  <div class="page">
-    <section>
-      <h1 class="title">Круговая диаграмма</h1>
-      <div class="wrap-form">
+  <section class="container">
+    <h1 class="title">Круговая диаграмма</h1>
+    <div class="layout">
+      <div class="form">
         <SectorRow
           v-for="sector in sectors"
           :key="sector.id"
@@ -14,21 +14,16 @@
         <button class="add-sector" @click="addSector">Добавить сектор</button>
       </div>
       <PieChart :sectors="sectors" />
-    </section>
-  </div>
+    </div>
+  </section>
 </template>
 
 <script setup lang="ts">
-import PieChart from '@/components/PieChart.vue'
 import SectorRow from '@/components/SectorRow.vue'
+import PieChart from '@/components/PieChart.vue'
 import type { Sector } from '@/types'
-import { reactive, ref } from 'vue'
+import { ref } from 'vue'
 
-const model = reactive({
-  name: '',
-  value: 0,
-  color: '',
-})
 const sectors = ref<Sector[]>([
   { id: 1, name: 'Sector 1', value: 30, color: '#FF6384' },
   { id: 2, name: 'Sector 2', value: 50, color: '#FFCD56' },
@@ -38,9 +33,9 @@ const sectors = ref<Sector[]>([
 const addSector = () => {
   const newSector: Sector = {
     id: Date.now(),
-    name: model.name,
-    value: model.value,
-    color: model.color,
+    name: 'Sector',
+    value: 0,
+    color: '#000000',
   }
   sectors.value.push(newSector)
 }
@@ -58,8 +53,15 @@ const removeSector = (id: number) => {
   border-bottom: 1px solid #dbdfe9;
   padding-bottom: 30px;
 }
-.wrap-form {
+.layout {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  align-items: flex-start;
+}
+.form {
   max-width: 541px;
+  width: 100%;
 }
 .add-sector {
   width: 100%;
