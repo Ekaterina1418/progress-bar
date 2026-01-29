@@ -31,14 +31,16 @@ const color = defineModel<string | number>('color')
 .sector-row {
   display: flex;
   align-items: center;
-  width: 541px;
+  width: 100%;
   height: 60px;
   padding: 18px 20px;
   border-radius: 10px;
   background: #dbdfe933;
   margin-bottom: 8px;
 }
-
+.sector-row:last-of-type {
+  margin-bottom: 30px;
+}
 .input-color {
   -webkit-appearance: none;
   -moz-appearance: none;

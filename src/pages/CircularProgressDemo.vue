@@ -50,7 +50,7 @@ import CircularProgress from '@/components/CircularProgress.vue'
   font-size: 24px;
   font-weight: 600;
   margin-bottom: 24px;
-  color: rgb(77, 72, 72);
+  color: #252f4a;
   text-align: center;
 }
 .demo-grid {
