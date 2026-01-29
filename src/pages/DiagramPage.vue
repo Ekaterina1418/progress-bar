@@ -9,6 +9,7 @@
       v-model:name="sector.name"
       v-model:value="sector.value"
       v-model:color="sector.color"
+      @delete="removeSector(sector.id)"
     />
     <button class="add-sector" @click="addSector">Добавить сектор</button>
   </div>
@@ -38,6 +39,9 @@ const addSector = () => {
     color: model.color,
   }
   sectors.value.push(newSector)
+}
+const removeSector = (id: number) => {
+  sectors.value = sectors.value.filter((sector) => sector.id !== id)
 }
 </script>
 

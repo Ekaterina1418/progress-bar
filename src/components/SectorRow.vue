@@ -15,13 +15,18 @@
     </div>
     <input class="custom-input input-color" v-model="color" type="color" />
     <div class="actions">
-      <button class="edit"><img src="../assets/icons/pen.svg" alt="pen" /></button>
-      <button class="delete"><img src="../assets/icons/basket.svg" alt="basket" /></button>
+      <button @click="emit('edit')" class="edit">
+        <img src="../assets/icons/pen.svg" alt="pen" />
+      </button>
+      <button @click="emit('delete')" class="delete">
+        <img src="../assets/icons/basket.svg" alt="basket" />
+      </button>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
+const emit = defineEmits(['delete', 'edit'])
 const name = defineModel<string | number>('name')
 const value = defineModel<number>('value')
 const color = defineModel<string | number>('color')
