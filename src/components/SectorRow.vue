@@ -1,7 +1,7 @@
 <template>
   <div class="sector-row">
     <div class="input-wrapper">
-      <input class="custom-input input-text" v-model="name" type="text" />
+      <input class="custom-input input-text" v-model="name" type="text" :readonly="!isEditing" />
     </div>
     <div class="input-wrapper">
       <input
@@ -11,11 +11,12 @@
         min="0"
         max="100"
         @input="value = Math.min(Math.max(value ?? 0, 0), 100)"
+        :readonly="!isEditing"
       />
     </div>
-    <input class="custom-input input-color" v-model="color" type="color" />
+    <input class="custom-input input-color" v-model="color" type="color" :readonly="!isEditing" />
     <div class="actions">
-      <button @click="emit('edit')" class="edit">
+      <button @click="toggleEdit" class="edit">
         <img src="../assets/icons/pen.svg" alt="pen" />
       </button>
       <button @click="emit('delete')" class="delete">
@@ -26,10 +27,18 @@
 </template>
 
 <script setup lang="ts">
+import { ref } from 'vue'
+
 const emit = defineEmits(['delete', 'edit'])
 const name = defineModel<string | number>('name')
 const value = defineModel<number>('value')
 const color = defineModel<string | number>('color')
+
+const isEditing = ref(false)
+
+const toggleEdit = () => {
+  isEditing.value = !isEditing.value
+}
 </script>
 
 <style scoped>
