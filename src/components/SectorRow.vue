@@ -1,5 +1,5 @@
 <template>
-  <div class="sector-row">
+  <div class="sector-row" :class="{ readonly: !isEditing }">
     <div class="input-wrapper">
       <input class="custom-input input-text" v-model="name" type="text" :readonly="!isEditing" />
     </div>
@@ -13,8 +13,15 @@
         @input="value = Math.min(Math.max(value ?? 0, 0), 100)"
         :readonly="!isEditing"
       />
+      <span class="percent-sign">%</span>
     </div>
-    <ColorPicker v-model="color" inputId="cp-hex" format="hex" class="picker" />
+    <ColorPicker
+      v-model="color"
+      inputId="cp-hex"
+      format="hex"
+      class="picker"
+      :disabled="!isEditing"
+    />
     <div class="actions">
       <button @click="toggleEdit" class="edit">
         <img src="../assets/icons/pen.svg" alt="pen" />
@@ -58,40 +65,29 @@ watch(color, (val) => {
 .sector-row:last-of-type {
   margin-bottom: 30px;
 }
-.input-color {
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-  width: 20px;
-  height: 20px;
-  background-color: transparent;
+.custom-input {
   border: none;
-  cursor: pointer;
-  padding: 0;
-  overflow: hidden;
+  outline: none;
 }
-.input-color::-webkit-color-swatch-wrapper {
-  padding: 0;
+.sector-row:not(.readonly) .input-wrapper:focus-within {
+  border-color: #252f4a;
 }
-.input-color::-webkit-color-swatch {
-  border: none;
-  border-radius: 50%;
+.sector-row.readonly .input-wrapper input {
+  opacity: 0.3;
+  cursor: not-allowed;
+  pointer-events: none;
 }
-
-.input-color::-moz-color-swatch {
-  border: none;
-  border-radius: 50%;
-  height: 20px;
-  width: 20px;
-}
-
-.input-color::-moz-focus-inner {
-  border: none;
-  padding: 0;
+.sector-row.readonly .percent-sign {
+  opacity: 0.3;
 }
 .input-wrapper {
+  display: flex;
+  align-items: center;
   position: relative;
+  border: 1px solid transparent;
+  border-radius: 6px;
 }
+
 .input-wrapper:not(:last-child) {
   margin-right: 25px;
 }
@@ -105,20 +101,28 @@ watch(color, (val) => {
   background: #dbdfe9;
   transform: translateY(-50%);
 }
+
 .input-text {
   width: 120px;
   border: none;
   background: transparent;
   margin-right: 25px;
+  color: #252f4a;
 }
 
 .input-value {
   width: 40px;
   text-align: right;
+  color: #252f4a;
   border: none;
   background: transparent;
   padding: 0 5px;
   margin-right: 25px;
+}
+.percent-sign {
+  position: absolute;
+  right: 15px;
+  color: #252f4a;
 }
 input[type='number']::-webkit-inner-spin-button,
 input[type='number']::-webkit-outer-spin-button {
@@ -143,6 +147,7 @@ input[type='number'] {
   cursor: pointer;
   font-size: 16px;
 }
+
 .picker {
   --p-colorpicker-preview-width: 20px;
   --p-colorpicker-preview-height: 20px;
