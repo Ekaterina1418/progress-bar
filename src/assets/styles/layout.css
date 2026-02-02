@@ -3,3 +3,8 @@
   margin: 0 auto;
   padding: 12px 24px;
 }
+@media (max-width: 768px) {
+  .page {
+    padding: 12px 15px;
+  }
+}

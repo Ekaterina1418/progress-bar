@@ -55,14 +55,23 @@ const removeSector = (id: number) => {
 }
 .layout {
   display: flex;
-  justify-content: space-between;
   flex-wrap: wrap;
+  gap: 30px;
   align-items: flex-start;
 }
+
 .form {
-  max-width: 541px;
-  width: 100%;
+  flex: 1 1 50%;
+  min-width: 280px;
 }
+.pie-chart-wrapper {
+  flex: 1 1 50%;
+  min-width: 280px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .add-sector {
   width: 100%;
   background: #1b84ff;
@@ -70,5 +79,19 @@ const removeSector = (id: number) => {
   border-radius: 10px;
   color: #fff;
   border: none;
+}
+@media (max-width: 768px) {
+  .form,
+  .pie-chart-wrapper {
+    flex: 1 1 100%;
+  }
+  .add-sector {
+    padding: 10px 0;
+  }
+  .title {
+    font-size: 24px;
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+  }
 }
 </style>

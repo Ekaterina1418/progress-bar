@@ -153,4 +153,15 @@ input[type='number'] {
   --p-colorpicker-preview-height: 20px;
   --p-colorpicker-preview-border-radius: 50%;
 }
+@media (max-width: 768px) {
+  .input-text {
+    width: 70px;
+  }
+  .input-wrapper:not(:last-child) {
+    margin-right: 10px;
+  }
+  .sector-row {
+    padding: 10px 8px;
+  }
+}
 </style>
