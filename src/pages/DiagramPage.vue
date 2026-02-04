@@ -57,6 +57,7 @@ const removeSector = (id: number) => {
   display: flex;
   flex-wrap: wrap;
   gap: 30px;
+  justify-content: center;
   align-items: flex-start;
 }
 
